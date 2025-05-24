@@ -4,12 +4,17 @@
 sudo apt update
 sudo apt install -y zsh git curl fonts-powerline
 
+sudo apt remove -y rustc
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup self update
+rustup update
+rustc --version
+
 # Install zoxide
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 
 # Install eza
 if ! command -v eza &> /dev/null; then
-  sudo apt install -y cargo
   cargo install eza
   echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.profile
   export PATH="$HOME/.cargo/bin:$PATH"

@@ -2,7 +2,6 @@
 
 sudo apt update
 sudo apt install -y stow
+stow .
 
 ./setup-zsh.sh
-
-stow .

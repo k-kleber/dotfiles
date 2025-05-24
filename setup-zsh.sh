@@ -2,10 +2,10 @@
 
 # Install dependencies (Debian/Ubuntu example)
 sudo apt update
-sudo apt install -y zsh git curl fonts-powerline
+sudo apt install -y zsh git curl fonts-powerline build-essential
 
 sudo apt remove -y rustc
-if ! command -v rustup &>/dev/null; then
+if ! command -v rustup &> /dev/null; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 rustup self update
@@ -14,14 +14,14 @@ rustc --version
 
 # Install zoxide
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
-echo 'export PATH="$HOME/.local/bin:$PATH"' >>~/.profile
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
 export PATH="$HOME/.local/bin:$PATH"
 
 # Install eza
-if ! command -v eza &>/dev/null; then
-  cargo install eza
-  echo 'export PATH="$HOME/.cargo/bin:$PATH"' >>~/.profile
+if ! command -v eza &> /dev/null; then
   export PATH="$HOME/.cargo/bin:$PATH"
+  cargo install eza
+  echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.profile
 fi
 
 # Install Powerlevel10k font (optional, for best prompt appearance)

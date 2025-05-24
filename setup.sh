@@ -1,0 +1,8 @@
+#!/bin/bash
+
+sudo apt update
+sudo apt install -y stow
+
+./setup-zsh.sh
+
+stow .

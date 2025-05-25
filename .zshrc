@@ -70,6 +70,7 @@ zinit cdreplay -q
 #bindkey '^p' history-search-backward
 #bindkey '^n' history-search-forward
 #bindkey '^[w' kill-region
+bindkey "^[[3~" delete-char
 bindkey '^ ' autosuggest-accept
 
 # History

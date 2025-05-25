@@ -1,0 +1,16 @@
+theme = "catppuccin_mocha"
+
+[editor]
+line-number = "relative"
+mouse = true
+cursorline = true
+bufferline = "always"
+
+[keys.normal]
+# Example: use spacebar as leader key
+"space" = { "w" = ":w", "q" = ":q" }
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name"]
+right = ["diagnostics", "position", "file-type"]
+

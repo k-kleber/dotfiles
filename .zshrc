@@ -107,3 +107,44 @@ alias ls='eza -lah --git --icons'
 alias ll='eza -l --git --icons'
 alias la='eza -a --git --icons'
 alias lt='eza --tree --level=2 --icons'
+
+# ROS Development Aliases (added by ros-complete-setup.sh)
+alias ros-dev='distrobox enter ros-ubuntu'
+alias ros-code='distrobox enter ros-ubuntu -- code ~/catkin_ws'
+alias ros-status='distrobox list | grep ros-ubuntu'
+alias ros-enter='distrobox enter ros-ubuntu'
+alias ros-stop='distrobox stop ros-ubuntu'
+alias ros-start='distrobox start ros-ubuntu'
+
+if [ -d "/opt/ros/noetic" ]; then
+  source /opt/ros/noetic/setup.zsh
+fi
+
+if [ -d "/opt/ros/melodic" ]; then
+  source /opt/ros/melodic/setup.zsh
+fi
+
+if [ -d "$HOME/Qt/6.6.3" ]; then
+  export QT_HOME=$HOME/Qt/6.6.3/gcc_64
+  export PATH=$QT_HOME/bin:$PATH
+  export CMAKE_PREFIX_PATH=$QT_HOME
+fi
+
+# ArduPilot Development Aliases (added by ardupilot-complete-setup.sh)
+alias ap-dev='distrobox enter ardupilot-ubuntu'
+alias ap-sitl='distrobox enter ardupilot-ubuntu -- bash -c "cd ~/ardupilot && ./waf copter && ./build/sitl/bin/arducopter --model quad"'
+alias ap-status='distrobox list | grep ardupilot-ubuntu'
+alias ap-enter='distrobox enter ardupilot-ubuntu'
+alias ap-stop='distrobox stop ardupilot-ubuntu'
+alias ap-start='distrobox start ardupilot-ubuntu'
+
+if command -v podman >/dev/null 2>&1; then
+  export DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock
+fi
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
+  source /usr/share/nvm/init-nvm.sh
+fi

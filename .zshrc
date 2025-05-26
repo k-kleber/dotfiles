@@ -1,5 +1,10 @@
+export SHELL=$(which zsh)
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+
+if command -v nvim >/dev/null 2>&1; then
+  export EDITOR=nvim
+fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -8,11 +13,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+if [[ -e "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-if [[ -f "/opt/homebrew/bin/brew" ]] then
+if [[ -e "/opt/homebrew/bin/brew" ]] then
   # If you're using macOS, you'll want this enabled
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
@@ -21,13 +26,13 @@ fi
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Download Zinit, if it's not there yet
-if [ ! -d "$ZINIT_HOME" ]; then
+if [ ! -e "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 # If apt install fails, use this fallback:
-if [ ! -d "$HOME/.fzf" ]; then
+if [ ! -e "$HOME/.fzf" ]; then
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install --all
 fi
@@ -50,7 +55,6 @@ zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
-zinit snippet OMZP::archlinux
 zinit snippet OMZP::colored-man-pages
 zinit snippet OMZP::colorize
 zinit snippet OMZP::docker
@@ -70,7 +74,14 @@ zinit cdreplay -q
 #bindkey '^p' history-search-backward
 #bindkey '^n' history-search-forward
 #bindkey '^[w' kill-region
+# Fix Delete key
 bindkey "^[[3~" delete-char
+# Fix Home and End keys
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
+
 bindkey '^ ' autosuggest-accept
 
 # History
@@ -111,21 +122,21 @@ alias lt='eza --tree --level=2 --icons'
 
 # ROS Development Aliases (added by ros-complete-setup.sh)
 alias ros-dev='distrobox enter ros-ubuntu'
-alias ros-code='distrobox enter ros-ubuntu -- code ~/catkin_ws'
+alias ros-code='distrobox enter ros-ubuntu -- code'
 alias ros-status='distrobox list | grep ros-ubuntu'
 alias ros-enter='distrobox enter ros-ubuntu'
 alias ros-stop='distrobox stop ros-ubuntu'
 alias ros-start='distrobox start ros-ubuntu'
 
-if [ -d "/opt/ros/noetic" ]; then
+if [ -e "/opt/ros/noetic/setup.zsh" ]; then
   source /opt/ros/noetic/setup.zsh
 fi
 
-if [ -d "/opt/ros/melodic" ]; then
+if [ -e "/opt/ros/melodic/setup.zsh" ]; then
   source /opt/ros/melodic/setup.zsh
 fi
 
-if [ -d "$HOME/Qt/6.6.3" ]; then
+if [ -e "$HOME/Qt/6.6.3" ]; then
   export QT_HOME=$HOME/Qt/6.6.3/gcc_64
   export PATH=$QT_HOME/bin:$PATH
   export CMAKE_PREFIX_PATH=$QT_HOME
@@ -138,6 +149,8 @@ alias ap-status='distrobox list | grep ardupilot-ubuntu'
 alias ap-enter='distrobox enter ardupilot-ubuntu'
 alias ap-stop='distrobox stop ardupilot-ubuntu'
 alias ap-start='distrobox start ardupilot-ubuntu'
+
+alias vim=nvim
 
 if command -v podman >/dev/null 2>&1; then
   export DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock

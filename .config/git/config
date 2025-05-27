@@ -42,7 +42,7 @@
 
 [pager]
     branch = false  # no need to use pager for git branch
-    diff = diff-so-fancy | $PAGER  # diff-so-fancy as diff pager
+    diff = diff-so-fancy | less -FRX
 
 [push]
     autoSetupRemote = true  # easier to push new branches

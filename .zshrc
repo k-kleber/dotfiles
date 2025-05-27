@@ -55,7 +55,7 @@ zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
-zinit snippet OMZP::colored-man-pages
+# zinit snippet OMZP::colored-man-pages
 zinit snippet OMZP::colorize
 zinit snippet OMZP::docker
 zinit snippet OMZP::docker-compose
@@ -106,7 +106,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='ls --color'
-# alias vim='nvim'
+alias vim='nvim'
 alias c='clear'
 
 # Shell integrations
@@ -149,8 +149,6 @@ alias ap-status='distrobox list | grep ardupilot-ubuntu'
 alias ap-enter='distrobox enter ardupilot-ubuntu'
 alias ap-stop='distrobox stop ardupilot-ubuntu'
 alias ap-start='distrobox start ardupilot-ubuntu'
-
-alias vim=nvim
 
 if command -v podman >/dev/null 2>&1; then
   export DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock

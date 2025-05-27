@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
 
-# ARCH Linux Zsh Setup Script
-sudo pacman -S zsh git curl fonts-powerline build-essential
+# Install dependencies (Debian/Ubuntu example)
+sudo apt update
+sudo apt install -y zsh git curl fonts-powerline
+
+sudo apt remove -y rustc
+if ! command -v rustup &>/dev/null; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+rustup self update
+rustup update
+rustc --version
 
 # Install zoxide
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash

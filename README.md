@@ -13,6 +13,7 @@ This repository uses [GNU Stow](https://www.gnu.org/software/stow/) to manage an
 
 Organize your dotfiles in subdirectories named after the target application or purpose.  
 Example:
+
 ```
 /home/kevin/.dotfiles/
 ├── bash/
@@ -52,3 +53,4 @@ stow -D bash
 - [GNU Stow Manual](https://www.gnu.org/software/stow/manual/stow.html)
 
 - [Explainer](https://www.youtube.com/watch?v=y6XCebnB9gs)
+

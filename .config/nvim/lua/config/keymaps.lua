@@ -19,12 +19,17 @@ vim.keymap.set("n", "<leader>gg", function()
     end
   end
 
-  local buf_path = vim.api.nvim_buf_get_name(0)
-  local git_root = find_git_root(buf_path)
+  local buf_path = vim.api.nvim
+  local git_root = buf_path ~= "" and find_git_root(buf_path) or nil
 
   if not git_root then
-    vim.notify("No Git repository found for current buffer", vim.log.levels.ERROR)
-    return
+    -- Try workspace root as fallback
+    local root_dir = vim.fn.getcwd()
+    git_root = find_git_root(root_dir)
+    if not git_root then
+      vim.notify("No Git repository found for current buffer or workspace", vim.log.levels.ERROR)
+      return
+    end
   end
 
   snacks.terminal("lazygit", { cwd = git_root, esc_esc = false })

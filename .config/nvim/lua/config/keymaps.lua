@@ -19,7 +19,7 @@ vim.keymap.set("n", "<leader>gg", function()
     end
   end
 
-  local buf_path = vim.api.nvim
+  local buf_path = vim.api.nvim_buf_get_name(0)
   local git_root = buf_path ~= "" and find_git_root(buf_path) or nil
 
   if not git_root then

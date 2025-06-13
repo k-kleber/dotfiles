@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # ARCH Linux Zsh Setup Script
-sudo pacman -S zsh git curl fonts-powerline build-essential
+sudo pacman -S zsh git curl fonts-powerline build-essential atuin
 
 # Install zoxide
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash

@@ -29,6 +29,10 @@ if ! command -v fzf &>/dev/null; then
   ~/.fzf/install --all
 fi
 
+if ! command -v atuin &>/dev/null; then
+  cargo install atuin
+fi
+
 # Install Powerlevel10k font (optional, for best prompt appearance)
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 

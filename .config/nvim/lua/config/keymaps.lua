@@ -39,6 +39,7 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 map("n", "<leader>on", "<cmd>ObsidianNew<CR>", vim.tbl_extend("force", opts, { desc = "New note" }))
+map("n", "<leader>oT", "<cmd>ObsidianTomorrow<CR>", vim.tbl_extend("force", opts, { desc = "Tomorrow’s note" }))
 map("n", "<leader>ot", "<cmd>ObsidianToday<CR>", vim.tbl_extend("force", opts, { desc = "Today’s note" }))
 map("n", "<leader>oy", "<cmd>ObsidianYesterday<CR>", vim.tbl_extend("force", opts, { desc = "Yesterday’s note" }))
 map("n", "<leader>os", "<cmd>ObsidianSearch<CR>", vim.tbl_extend("force", opts, { desc = "Search notes" }))

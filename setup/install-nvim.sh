@@ -44,7 +44,7 @@ git clone https://github.com/neovim/neovim.git "$NVIM_DIR"
 echo "Building and installing Neovim..."
 cd "$NVIM_DIR"
 make CMAKE_BUILD_TYPE=Release
-sudo make install
+sudo make install || sudo make install/strip
 
 # 6. Clean up
 echo "Cleaning up build directory..."

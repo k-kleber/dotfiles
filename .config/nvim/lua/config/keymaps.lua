@@ -46,3 +46,8 @@ map("n", "<leader>os", "<cmd>ObsidianSearch<CR>", vim.tbl_extend("force", opts, 
 map("n", "<leader>oo", "<cmd>ObsidianOpen<CR>", vim.tbl_extend("force", opts, { desc = "Open in Obsidian app" }))
 map("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", vim.tbl_extend("force", opts, { desc = "Backlinks" }))
 map("n", "<leader>ol", "<cmd>ObsidianLinks<CR>", vim.tbl_extend("force", opts, { desc = "Note links" }))
+
+vim.keymap.set("i", "<Find>", "<Home>", { noremap = true })
+vim.keymap.set("i", "<Select>", "<End>", { noremap = true })
+vim.keymap.set("n", "<Find>", "0", { noremap = true }) -- Home
+vim.keymap.set("n", "<Select>", "$", { noremap = true }) -- End

@@ -6,18 +6,18 @@ return {
     "nvim-lua/plenary.nvim",
   },
   opts = {
-    sticky = function()
-      local ft = vim.bo.filetype
-      if ft == "markdown" then
-        return { "You are editing a Markdown document. Focus on clarity and formatting." }
-      elseif ft == "cpp" or ft == "c" or ft == "python" then
-        return {
-          "You are a programming expert. You are editing code. Provide concise, idiomatic, and well-documented solutions. Use language specific best practices.",
-        }
-      else
-        return nil
-      end
-    end,
+    -- sticky = function()
+    --   local ft = vim.bo.filetype
+    --   if ft == "markdown" then
+    --     return { "You are editing a Markdown document. Focus on clarity and formatting." }
+    --   elseif ft == "cpp" or ft == "c" or ft == "python" then
+    --     return {
+    --       "You are a programming expert. You are editing code. Provide concise, idiomatic, and well-documented solutions. Use language specific best practices.",
+    --     }
+    --   else
+    --     return ""
+    --   end
+    -- end,
     code_block = {
       enabled = true,
       syntax_highlight = true,

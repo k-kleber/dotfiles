@@ -144,6 +144,7 @@ if [[ -e "/opt/ros" ]]; then
   fi
   export DISABLE_ROS1_EOL_WARNINGS=1
   alias rviz_x11="env QT_QPA_PLATFORM=xcb rviz"
+  alias rviz-nvidia='QT_QPA_PLATFORM=xcb __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia rviz'
 
   if [ -f /opt/ros/$ROS_DISTRO/share/catkin_tools/command_completion.zsh ]; then
       source /opt/ros/$ROS_DISTRO/share/catkin_tools/command_completion.zsh
@@ -163,6 +164,11 @@ alias ros-enter='XDG_SESSION_TYPE=x11 distrobox enter ros-ubuntu'
 alias ros-rviz='XDG_SESSION_TYPE=x11 distrobox enter ros-ubuntu -- source ~/.zshrc && source ~/setupros.sh && env QT_QPA_PLATFORM=xcb rviz'
 alias ros-stop='distrobox stop ros-ubuntu'
 alias ros-start='distrobox start ros-ubuntu'
+
+alias ubuntu-enter='XDG_SESSION_TYPE=x11 distrobox enter ubuntu20-nvidia'
+alias ubuntu-status='distrobox list | grep ubuntu20-nvidia'
+alias ubuntu-stop='distrobox stop ubuntu20-nvidia'
+
 
 if [ -e "$HOME/Qt/6.6.3" ]; then
   export QT_HOME=$HOME/Qt/6.6.3/gcc_64

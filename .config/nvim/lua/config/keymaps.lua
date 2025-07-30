@@ -38,14 +38,14 @@ end, { desc = "LazyGit (buffer’s Git root)" })
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
-map("n", "<leader>on", "<cmd>ObsidianNew<CR>", vim.tbl_extend("force", opts, { desc = "New note" }))
-map("n", "<leader>oT", "<cmd>ObsidianTomorrow<CR>", vim.tbl_extend("force", opts, { desc = "Tomorrow’s note" }))
-map("n", "<leader>ot", "<cmd>ObsidianToday<CR>", vim.tbl_extend("force", opts, { desc = "Today’s note" }))
-map("n", "<leader>oy", "<cmd>ObsidianYesterday<CR>", vim.tbl_extend("force", opts, { desc = "Yesterday’s note" }))
-map("n", "<leader>os", "<cmd>ObsidianSearch<CR>", vim.tbl_extend("force", opts, { desc = "Search notes" }))
-map("n", "<leader>oo", "<cmd>ObsidianOpen<CR>", vim.tbl_extend("force", opts, { desc = "Open in Obsidian app" }))
-map("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", vim.tbl_extend("force", opts, { desc = "Backlinks" }))
-map("n", "<leader>ol", "<cmd>ObsidianLinks<CR>", vim.tbl_extend("force", opts, { desc = "Note links" }))
+-- map("n", "<leader>on", "<cmd>ObsidianNew<CR>", vim.tbl_extend("force", opts, { desc = "New note" }))
+-- map("n", "<leader>oT", "<cmd>ObsidianTomorrow<CR>", vim.tbl_extend("force", opts, { desc = "Tomorrow’s note" }))
+-- map("n", "<leader>ot", "<cmd>ObsidianToday<CR>", vim.tbl_extend("force", opts, { desc = "Today’s note" }))
+-- map("n", "<leader>oy", "<cmd>ObsidianYesterday<CR>", vim.tbl_extend("force", opts, { desc = "Yesterday’s note" }))
+-- map("n", "<leader>os", "<cmd>ObsidianSearch<CR>", vim.tbl_extend("force", opts, { desc = "Search notes" }))
+-- map("n", "<leader>oo", "<cmd>ObsidianOpen<CR>", vim.tbl_extend("force", opts, { desc = "Open in Obsidian app" }))
+-- map("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", vim.tbl_extend("force", opts, { desc = "Backlinks" }))
+-- map("n", "<leader>ol", "<cmd>ObsidianLinks<CR>", vim.tbl_extend("force", opts, { desc = "Note links" }))
 
 vim.keymap.set("i", "<Find>", "<Home>", { noremap = true })
 vim.keymap.set("i", "<Select>", "<End>", { noremap = true })

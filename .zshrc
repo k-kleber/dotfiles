@@ -4,6 +4,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 if command -v nvim >/dev/null 2>&1; then
   export EDITOR=nvim
+  alias vim='nvim'
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -59,6 +60,12 @@ zinit snippet OMZP::command-not-found
 # Load completions
 autoload -Uz compinit && compinit
 
+# VectorCode shell completion, right now not installed on distroboxes which are all ubuntu based
+if command -v vectorcode >/dev/null 2>&1 && ! grep -qi '^ID=ubuntu' /etc/os-release; then
+  eval "$(vectorcode -s zsh)"
+  alias vectorcode='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia vectorcode'
+fi
+
 zinit cdreplay -q
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -98,7 +105,7 @@ setopt hist_find_no_dups
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
+zstyle ':completion:*' menu select
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
@@ -108,9 +115,6 @@ alias rsync='noglob rsync' # same as above
 alias ls='ls --color'
 alias c='clear'
 
-if command -v nvim >/dev/null 2>&1; then
-  alias vim='nvim'
-fi
 
 # Shell integrations
 eval "$(fzf --zsh)"

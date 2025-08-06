@@ -4,34 +4,52 @@ return {
   dependencies = {
     "zbirenbaum/copilot.lua", -- or "github/copilot.vim"
     "nvim-lua/plenary.nvim",
-  },
-  opts = {
-    -- sticky = function()
-    --   local ft = vim.bo.filetype
-    --   if ft == "markdown" then
-    --     return { "You are editing a Markdown document. Focus on clarity and formatting." }
-    --   elseif ft == "cpp" or ft == "c" or ft == "python" then
-    --     return {
-    --       "You are a programming expert. You are editing code. Provide concise, idiomatic, and well-documented solutions. Use language specific best practices.",
-    --     }
-    --   else
-    --     return ""
-    --   end
-    -- end,
-    code_block = {
-      enabled = true,
-      syntax_highlight = true,
+    {
+      "Davidyz/VectorCode",
+      lazy = true,
     },
-    show_help = true,
-    highlight_selection = true,
-    auto_follow_cursor = true,
-    selection = function(source)
-      local select = require("CopilotChat.select")
-      if select.visual(source) then
-        return select.visual(source)
-      else
-        return select.buffer(source)
-      end
-    end,
   },
+  opts = function()
+    local vectorcode_ctx = require("vectorcode.integrations.copilotchat").make_context_provider({
+      prompt_header = "Here are relevant files from the repository:",
+      prompt_footer = "\nConsider this context when answering:",
+      skip_empty = true,
+    })
+
+    return {
+      code_block = {
+        enabled = true,
+        syntax_highlight = true,
+      },
+      show_help = true,
+      highlight_selection = true,
+      auto_follow_cursor = true,
+      selection = function(source)
+        local select = require("CopilotChat.select")
+        if select.visual(source) then
+          return select.visual(source)
+        else
+          return select.buffer(source)
+        end
+      end,
+      contexts = {
+        vectorcode = vectorcode_ctx,
+      },
+      prompts = {
+        Explain = {
+          prompt = "Explain the following code in detail:\n$input",
+          context = { "selection", "vectorcode" },
+        },
+        GenericCoding = {
+          prompt = "You are a coding expert and use best practises for writing well structured, secure and efficient code relying on best coding principles. Help me implement the following feature or change in this codebase:\n$input",
+          context = { "selection", "vectorcode" },
+        },
+        -- Other prompts...
+      },
+      -- sticky = {
+      --   "Using the model $claude-3.7-sonnet-thought",
+      --   "#vectorcode", -- Automatically includes repository context in every conversation
+      -- },
+    }
+  end,
 }

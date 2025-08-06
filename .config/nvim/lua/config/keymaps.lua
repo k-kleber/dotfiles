@@ -51,3 +51,10 @@ vim.keymap.set("i", "<Find>", "<Home>", { noremap = true })
 vim.keymap.set("i", "<Select>", "<End>", { noremap = true })
 vim.keymap.set("n", "<Find>", "0", { noremap = true }) -- Home
 vim.keymap.set("n", "<Select>", "$", { noremap = true }) -- End
+
+vim.keymap.set("n", "<leader>acc", "<cmd>CodeCompanionChat<cr>", { desc = "Open CodeCompanion Chat" })
+vim.keymap.set("n", "<leader>aci", "<cmd>CodeCompanion<cr>", { desc = "Open CodeCompanion Inline" })
+vim.keymap.set("n", "<leader>acq", "<cmd>CodeCompanion Toggle<cr>", { desc = "Open CodeCompanion Inline" })
+vim.keymap.set("n", "<Leader>acC", function()
+  require("codecompanion").prompt("code_vectorized")
+end, { noremap = true, silent = true })
